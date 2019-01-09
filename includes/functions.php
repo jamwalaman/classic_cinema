@@ -9,12 +9,21 @@ function dbConnect() {
 function nav_active($currentPage) {
 	switch ($currentPage) {
 		case HOME:
-		case "classics.php":
-		echo "active";
+		case CLASSICS;
+		case SCIFI;
+		case HITCHCOCK;
+		return "active";
 		break;
 		default:
 		return false;
 	}
+}
+// Navigation links
+function nav_links($currentPage, $pageLink, $pageName) {
+	$html = " <li class='nav-item " . nav_active($currentPage == $pageLink) . " ' > ";
+	$html .= " <a class='nav-link' href='$pageLink'> $pageName </a> ";
+	$html .= " </li> ";
+	return $html;
 }
 function addToCart() {
 	if (isset($_SESSION['role']) && $_SESSION['role'] === 'user') {

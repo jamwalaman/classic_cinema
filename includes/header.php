@@ -74,19 +74,14 @@ $_SESSION['lastPage'] = htmlspecialchars($_SERVER['PHP_SELF']);
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item <?php nav_active($currentPage == HOME);?> ">
-						<a class="nav-link" href="<?php echo HOME; ?>">Home</a>
-					</li>
-					<li class="nav-item <?php nav_active($currentPage == CLASSICS); ?> ">
-						<a class="nav-link" href="<?php echo CLASSICS ?>">Classics</a>
-					</li>
-					<li class="nav-item <?php nav_active($currentPage == SCIFI); ?>">
-						<a class="nav-link " href="<?php echo SCIFI; ?>">Scifi and Horror</a>
-					</li>
-					<li class="nav-item <?php nav_active($currentPage == HITCHCOCK); ?>">
-						<a class="nav-link" href="<?php echo HITCHCOCK; ?>">Alfred Hitchcock</a>
-					</li>
-					<?php if (isset($_SESSION['authenticatedUser'])) { ?>
+
+					<?php
+					echo nav_links($currentPage, HOME, 'Home');
+					echo nav_links($currentPage, CLASSICS, 'Classics');
+					echo nav_links($currentPage, SCIFI, 'Scifi and Horror');
+					echo nav_links($currentPage, HITCHCOCK, 'Alfred Hitchcock');
+					
+					if (isset($_SESSION['authenticatedUser'])) { ?>
 						<!-- show the following links if user is logged -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle font-weight-bold text-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hi <?php echo $_SESSION['authenticatedUser'] . ' (' . $_SESSION['role'] . ')'; ?></a>
@@ -106,6 +101,7 @@ $_SESSION['lastPage'] = htmlspecialchars($_SERVER['PHP_SELF']);
 							<a class="nav-link text-uppercase font-weight-bold text-info" href="register.php">Register</a>
 						</li>
 					<?php } ?>
+					
 				</ul><!-- navbar-nav -->
 			</div><!-- navbarCollapse -->
 		</div><!-- container -->
